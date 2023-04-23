@@ -14,6 +14,6 @@ Once you have an API key, you will need to add it to the DezgoApiService interfa
 
   ## Some screenshots from the application":
   
-  <img src="https://user-images.githubusercontent.com/85438205/233826045-56315498-e198-41b9-a56b-0750ac763e5f.jpg" alt="alt text" width="540" height="540">
+  <img src="https://user-images.githubusercontent.com/85438205/233826045-56315498-e198-41b9-a56b-0750ac763e5f.jpg" alt="alt text" width="540" height="320">
 
 
