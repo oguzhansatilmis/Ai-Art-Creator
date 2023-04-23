@@ -12,7 +12,6 @@ Once you have an API key, you will need to add it to the DezgoApiService interfa
 - Dagger2 & Hilt
 - Data Layer 
 
-## The tools I have used to gain the Android Clean Architecture are:
+  ## Some screenshots from the application":
 
-<img src="1.jpg" alt="alt yazı" width="320">
-
+![1](https://user-images.githubusercontent.com/85438205/233826045-56315498-e198-41b9-a56b-0750ac763e5f.jpg)
