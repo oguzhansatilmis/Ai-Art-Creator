@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.OnBoardingFragment">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/resim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/dikey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50121653" />
+
+    <TextView
+        android:id="@+id/welcome_to"
+        android:layout_width="174dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/inter_medium"
+        android:text="Welcome to"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:textSize="30sp"
+
+       app:layout_constraintStart_toStartOf="@id/dikey"
+        app:layout_constraintEnd_toEndOf="@id/dikey"
+
+        app:layout_constraintTop_toTopOf="@id/yatay1"
+        app:layout_constraintBottom_toBottomOf="@id/yatay1"
+
+
+
+        />
+
+    <TextView
+        android:id="@+id/ai_art_crea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_medium"
+        android:lineHeight="36.31px"
+        android:text="Al Art Creator"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textFontWeight="400"
+        android:textSize="30sp"
+
+
+        app:layout_constraintStart_toStartOf="@id/dikey"
+        app:layout_constraintEnd_toEndOf="@id/dikey"
+        app:layout_constraintTop_toTopOf="@id/yatay2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/yatay1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50752395" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/yatay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5512996" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/yatay3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.69686800894" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/yatay4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88473214285" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center_horizontal|top"
+        app:layout_constraintStart_toStartOf="@id/dikey2"
+        app:layout_constraintEnd_toEndOf="@id/dikey3"
+        app:layout_constraintTop_toTopOf="@id/yatay3"
+        android:textColor="#6C6363"
+        android:textFontWeight="700"
+        android:textAlignment="center"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/dikey2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10628019323" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/dikey3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8913139" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_medium"
+        android:textAlignment="center"
+        android:gravity="center"
+      android:textSize="38px"
+        android:textFontWeight="1000"
+        android:textStyle="bold"
+        android:background="@drawable/btn_onboarding"
+       app:layout_constraintStart_toStartOf="@id/dikey4"
+        app:layout_constraintEnd_toEndOf="@id/dikey5"
+        app:layout_constraintTop_toTopOf="@id/yatay4"
+        app:layout_constraintBottom_toBottomOf="@id/yatay5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/dikey4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16951338" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/dikey5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85951338" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/yatay5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97473214285" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
