@@ -5,8 +5,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface DezgoApiService {
-
-
     @POST("text2image")
     @FormUrlEncoded
         suspend fun getTextToImageAsStream (
