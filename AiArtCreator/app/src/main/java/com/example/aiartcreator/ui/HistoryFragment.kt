@@ -50,14 +50,17 @@ class HistoryFragment : Fragment() {
         binding.historyRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.historyRecyclerView.adapter = historyAdapter
 
-        getImageData ()
+  //      getImageData ()
 
 
         binding.imageView11.setOnClickListener {
             findNavController().navigate(HistoryFragmentDirections.actionHistoryFragmentToHomeFragment())
         }
     }
-    private fun getImageData() {
+
+
+    /*
+      private fun getImageData() {
         imageModel.viewModelScope.launch {
             imageModel.allImages.collectLatest { data ->
                 imageList = data.toMutableList()
@@ -66,5 +69,7 @@ class HistoryFragment : Fragment() {
             }
         }
     }
+     */
+
 
 }

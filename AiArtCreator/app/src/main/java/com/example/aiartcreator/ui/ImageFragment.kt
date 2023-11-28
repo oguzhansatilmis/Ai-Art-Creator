@@ -18,9 +18,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.aiartcreator.model.ImageData
 import com.example.aiartcreator.viewmodel.ImageDataViewModel
 import com.example.aiartcreator.databinding.FragmentImageBinding
+import com.example.aiartcreator.model.Result
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.ByteArrayInputStream
+import java.lang.Exception
 
 @AndroidEntryPoint
 class ImageFragment : Fragment() {
@@ -46,38 +51,20 @@ class ImageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arg1 = arguments?.getString("arg1").toString()
         arg2 = arguments?.getString("arg2").toString()
+
+        fetchImage()
+
         println(arg1)
         println(arg2)
 
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
-        viewLifecycleOwner.lifecycleScope.  launch {
-            binding.aiImage.visibility = View.GONE
-            imageViewModel.getTextToImage("${arg1}")
-                .collect {
-                    if (it.isSuccessful) {
-                        byteArray = it.body()?.bytes()!!
-                        if (byteArray != null) {
-                             bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-                            println("adasdasda")
-                            if(it.isSuccessful){
-                                binding.infoTV.text = arg1 + "," + arg2
-                                binding.aiImage.setImageBitmap(bitmap)
-                                binding.aiImage.visibility = View.VISIBLE
-                            }
-                        }
-                    }
-                    else{
-                        println("basarısız")
-                    }
 
-                }
-        }
         binding.downloadButton.setOnClickListener {
             val saveImage = ImageData(arg1 = arg1, arg2 = arg2,image=byteArray)
             imageViewModel.viewModelScope.launch {
-                imageViewModel.insert(saveImage)
+               // imageViewModel.insert(saveImage)
             }
 
             val builder = AlertDialog.Builder(requireContext())
@@ -111,6 +98,50 @@ class ImageFragment : Fragment() {
             findNavController().navigate(ImageFragmentDirections.actionImageFragmentToHomeFragment())
         }
     }
+    private fun fetchImage(){
+        imageViewModel.viewModelScope.launch{
+            imageViewModel.fetchData(arg1)
 
+            val imageResponse= imageViewModel.imageResponseState
+            imageResponse.collectLatest {
+               when(it){
+                   is Result.Success ->{
+                       val data = it.data
+                       println("basarılı")
+
+                       val responseBody = data.body()
+                       responseBody?.let {
+                           val bitmap = responseBody.convertResponseBodyToBitmap(responseBody = responseBody)
+                           binding.aiImage.setImageBitmap(bitmap)
+                       }
+
+
+
+                   }
+                   is Result.Loading ->{
+                       println("Loading")
+                   }
+                   is Result.Error ->{
+                       val message = it.message
+                       println("error $message")
+                   }
+               }
+           }
+
+        }
+    }
+    fun ResponseBody.convertResponseBodyToBitmap(responseBody: ResponseBody) :Bitmap?{
+
+        return try {
+            val byteArray = responseBody.bytes()
+            val inputStream = ByteArrayInputStream(byteArray)
+            BitmapFactory.decodeStream(inputStream)
+        } catch ( e :Exception){
+            e.printStackTrace()
+            null
+        }
+
+
+    }
 
 }

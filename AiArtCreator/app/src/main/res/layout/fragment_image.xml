@@ -26,7 +26,7 @@
         android:layout_height="552dp"
         android:layout_marginTop="15sp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/resimm"
+
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@id/guideline49"
         app:layout_constraintEnd_toEndOf="@id/guideline48"
