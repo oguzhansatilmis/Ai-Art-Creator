@@ -12,7 +12,4 @@ sealed class Result<out T>{
             }
         }
     }
-
-
-
 }

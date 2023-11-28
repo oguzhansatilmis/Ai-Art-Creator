@@ -1,5 +1,6 @@
 package com.example.aiartcreator.usecase
 
+import com.example.aiartcreator.model.ImageData
 import com.example.aiartcreator.repository.ImageRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 import okhttp3.ResponseBody
@@ -11,5 +12,9 @@ class ImageUseCase @Inject constructor( private val imageRepositoryImpl: ImageRe
     suspend fun createImageUseCase(prompt:String) : Flow<Response<ResponseBody>> =
         imageRepositoryImpl.createImage(prompt)
 
+
+    suspend fun saveImageUseCase(imageData: ImageData){
+        imageRepositoryImpl.saveImage(imageData)
+    }
 
 }

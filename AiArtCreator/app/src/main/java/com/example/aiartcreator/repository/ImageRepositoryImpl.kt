@@ -1,6 +1,7 @@
 package com.example.aiartcreator.repository
 
 import android.util.Log
+import com.example.aiartcreator.database.ImageDataDao
 import com.example.aiartcreator.model.ImageData
 import com.example.aiartcreator.network.DezgoApiService
 import com.example.aiartcreator.utils.Constants
@@ -15,7 +16,8 @@ import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class ImageRepositoryImpl @Inject constructor(
-    private val dezgoApiService: DezgoApiService
+    private val dezgoApiService: DezgoApiService,
+    private val imageDataDao: ImageDataDao
 ) :ImageRepository {
     override suspend fun createImage(prompt: String): Flow<Response<ResponseBody>> {
 
@@ -45,7 +47,7 @@ class ImageRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveImage(imageData: ImageData) {
-        TODO("Not yet implemented")
+       imageDataDao.saveImage(imageData = imageData)
     }
 
 }

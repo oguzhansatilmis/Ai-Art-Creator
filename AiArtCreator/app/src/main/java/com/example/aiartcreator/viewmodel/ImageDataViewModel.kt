@@ -1,8 +1,10 @@
 package com.example.aiartcreator.viewmodel
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aiartcreator.model.ImageData
 import com.example.aiartcreator.model.Result
 import com.example.aiartcreator.usecase.ImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,10 +17,11 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class ImageDataViewModel @Inject constructor(private val imageUseCase: ImageUseCase) : ViewModel() {
+class ImageDataViewModel @Inject constructor(
+    private val imageUseCase: ImageUseCase)
+    : ViewModel() {
 
     private val _imageResponseState = MutableStateFlow<Result<Response<ResponseBody>>>(Result.Loading.create())
-
     val imageResponseState: StateFlow<Result<Response<ResponseBody>>> = _imageResponseState
 
      fun fetchData(prompt:String) {
@@ -39,6 +42,16 @@ class ImageDataViewModel @Inject constructor(private val imageUseCase: ImageUseC
         }
 
     }
+    fun saveImage(imageData: ImageData){
+        viewModelScope.launch {
+            try {
+                imageUseCase.saveImageUseCase(imageData)
+            }catch (e:Exception){
+                Log.e("e",e.toString())
+            }
+        }
+    }
+
 }
 
 

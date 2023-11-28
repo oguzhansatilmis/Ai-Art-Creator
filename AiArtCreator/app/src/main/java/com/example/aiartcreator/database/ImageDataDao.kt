@@ -11,9 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ImageDataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-
-    suspend fun insert(imageData: ImageData)
-
-    @Query("SELECT* FROM imagedata")
+    suspend fun saveImage(imageData: ImageData)
+    @Query("SELECT * FROM imagedata")
     fun getImageDataAll() : Flow<List<ImageData>>
 }
