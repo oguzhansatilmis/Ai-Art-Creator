@@ -9,6 +9,7 @@ interface ImageRepository {
 
     suspend fun createImage(prompt:String) : Flow<Response<ResponseBody>>
     suspend fun saveImage(imageData: ImageData)
+    suspend fun getLocalImageList():Flow<List<ImageData>>
 
 
 }

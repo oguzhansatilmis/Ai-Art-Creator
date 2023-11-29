@@ -1,5 +1,6 @@
 package com.example.aiartcreator.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -50,26 +51,33 @@ class HistoryFragment : Fragment() {
         binding.historyRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.historyRecyclerView.adapter = historyAdapter
 
-  //      getImageData ()
+        fetchImageList()
 
 
         binding.imageView11.setOnClickListener {
             findNavController().navigate(HistoryFragmentDirections.actionHistoryFragmentToHomeFragment())
         }
+
+
     }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchImageList(){
 
-
-    /*
-      private fun getImageData() {
         imageModel.viewModelScope.launch {
-            imageModel.allImages.collectLatest { data ->
-                imageList = data.toMutableList()
+
+            val localImageDatabase = imageModel.getAllImage()
+
+            localImageDatabase.collectLatest {
+               imageList.addAll(it)
                 historyAdapter.data = imageList
                 historyAdapter.notifyDataSetChanged()
+
             }
         }
     }
-     */
+
+
+
 
 
 }

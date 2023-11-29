@@ -13,5 +13,5 @@ interface ImageDataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveImage(imageData: ImageData)
     @Query("SELECT * FROM imagedata")
-    fun getImageDataAll() : Flow<List<ImageData>>
+      fun getImageDataAll() : Flow<List<ImageData>>
 }

@@ -21,6 +21,7 @@ import com.example.aiartcreator.databinding.FragmentImageBinding
 import com.example.aiartcreator.model.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,6 +54,18 @@ class ImageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arg1 = arguments?.getString("arg1").toString()
         arg2 = arguments?.getString("arg2").toString()
+
+
+
+        println("------")
+
+
+
+
+
+
+
+
 
         fetchImage()
 
@@ -137,6 +150,8 @@ class ImageFragment : Fragment() {
             imageViewModel.saveImage(imageData = imageData)
         }
     }
+
+
 
     private fun fetchImage() {
         imageViewModel.viewModelScope.launch {

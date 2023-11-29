@@ -1,5 +1,6 @@
 package com.example.aiartcreator.repository
 
+import android.media.Image
 import android.util.Log
 import com.example.aiartcreator.database.ImageDataDao
 import com.example.aiartcreator.model.ImageData
@@ -7,9 +8,11 @@ import com.example.aiartcreator.network.DezgoApiService
 import com.example.aiartcreator.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.toList
 import okhttp3.Dispatcher
 import retrofit2.Response
 import okhttp3.ResponseBody
@@ -18,7 +21,7 @@ import javax.inject.Inject
 class ImageRepositoryImpl @Inject constructor(
     private val dezgoApiService: DezgoApiService,
     private val imageDataDao: ImageDataDao
-) :ImageRepository {
+) : ImageRepository {
     override suspend fun createImage(prompt: String): Flow<Response<ResponseBody>> {
 
         return flow {
@@ -34,20 +37,22 @@ class ImageRepositoryImpl @Inject constructor(
                 model = "epic_diffusion_1_1"
             )
 
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 emit(response)
-            }
-            else{
+            } else {
                 Log.e("Repository response error", "${response.code()}")
                 emit(response)
             }
         }.catch { e ->
-            Log.e("error","$e")
+            Log.e("error", "$e")
         }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun saveImage(imageData: ImageData) {
-       imageDataDao.saveImage(imageData = imageData)
+        imageDataDao.saveImage(imageData = imageData)
     }
 
+    override suspend fun getLocalImageList(): Flow<List<ImageData>> {
+        return imageDataDao.getImageDataAll()
+    }
 }
